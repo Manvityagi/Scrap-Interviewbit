@@ -20,6 +20,14 @@ let urls = [
 
 let links = [];
 
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 oneTopic = (url) => {
   const request = axios.get(url);
   return request
@@ -38,26 +46,24 @@ oneTopic = (url) => {
     });
 };
 
-createRawURLS = () => {
+const createRawURLS = async () => {
+  const promises = [];
   for (url of urls) {
+    promises.push(oneTopic(url));
   }
-};
-
-appendLinks = (links) => {
-  links.map((link) => {
-    return "https://www.interviewbit.com/" + link;
-  });
+  const results = Promise.all(promises);
+  return results;
 };
 
 async function solve() {
   try {
-    console.log(links.length);
     await createRawURLS();
     console.log(links.length);
-    appendLinks(links);
-    // for (link of links) {
-    //   console.log(link);
-    // }
+    links = links.map((link) => "https://www.interviewbit.com" + link);
+    links = shuffle(links);
+    for (link of links) {
+      console.log(link);
+    }
   } catch (err) {
     console.log("BETEEEEE ERROOOORR");
   }
