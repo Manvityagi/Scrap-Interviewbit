@@ -1,0 +1,15 @@
+{
+  "name": "interviewbit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "potusScraper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "cheerio": "^1.0.0-rc.3"
+  }
+}
